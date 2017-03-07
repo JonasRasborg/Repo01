@@ -39,3 +39,6 @@ C:\Users\Jonas\Desktop\AgentAssignment\AgentAssignment\obj\Debug\AgentAssignment
 C:\Users\Jonas\Desktop\AgentAssignment\AgentAssignment\obj\Debug\AgentAssignment.csproj.GenerateResource.Cache
 C:\Users\Jonas\Desktop\AgentAssignment\AgentAssignment\obj\Debug\AgentAssignment.exe
 C:\Users\Jonas\Desktop\AgentAssignment\AgentAssignment\obj\Debug\AgentAssignment.pdb
+C:\Users\Jonas R. Hartogsohn\Documents\Visual Studio 2015\Git\JonasR\AgentAssignment\AgentAssignment\bin\Debug\AgentAssignment.exe.config
+C:\Users\Jonas R. Hartogsohn\Documents\Visual Studio 2015\Git\JonasR\AgentAssignment\AgentAssignment\obj\Debug\AgentAssignment.exe
+C:\Users\Jonas R. Hartogsohn\Documents\Visual Studio 2015\Git\JonasR\AgentAssignment\AgentAssignment\obj\Debug\AgentAssignment.pdb

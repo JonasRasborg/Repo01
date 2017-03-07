@@ -22,7 +22,8 @@
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="FontSize" Value="12pt" />
             <Setter Property="FontWeight" Value="Bold" />
-        </Style>
+        </Style>
+
     </Window.Resources>
 
     <Grid Background="{DynamicResource myBrush}">
