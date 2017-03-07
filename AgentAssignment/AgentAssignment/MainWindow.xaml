@@ -57,7 +57,7 @@
                         <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" Width="50"/>
                         <GridViewColumn Header="CodeName" DisplayMemberBinding="{Binding Path=CodeName}" Width="100"/>
                         <GridViewColumn Header="Speciality" DisplayMemberBinding="{Binding Path=Speciality}" Width="100"/>
-                        <GridViewColumn Header="Assignment" DisplayMemberBinding="{Binding Path=Assigment}" Width="150"/>
+                        <GridViewColumn Header="Assignment" DisplayMemberBinding="{Binding Path=Assignment}" Width="150"/>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>
@@ -81,12 +81,12 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <StatusBar HorizontalAlignment="Left" Height="26" Margin="0,247,0,0" Grid.Row="4" VerticalAlignment="Top" Width="548" Grid.ColumnSpan="2" DockPanel.Dock="Bottom">
+        <StatusBar Grid.Row="4" VerticalAlignment="Bottom" Grid.ColumnSpan="3" Margin="0,0,0,0">
             <StatusBarItem>
                 <TextBlock Name="StatusbarText" DataContext="aListe" Text="{Binding Path=Length}"/>
             </StatusBarItem>
         </StatusBar>
-        <ToolBar x:Name="toolBar" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="27" Width="538" Grid.RowSpan="2">
+        <ToolBar x:Name="toolBar" Margin="0,20,0,0" Grid.RowSpan="2" Height="30" VerticalAlignment="Top" Grid.ColumnSpan="3">
             <Button x:Name="prev" Content="&lt;" Height="27" VerticalAlignment="Top" Width="43" Margin="0,0,0,-5" Command="{Binding PreviusCommand}"/>
             <Button x:Name="next" Content="&gt;" Height="27" VerticalAlignment="Top" Width="38" Margin="0,0,0,-5" Command="{Binding NextCommand}"/>
             <Button x:Name="Hej" Content="{DynamicResource bond1}" Width="50"/>
