@@ -38,7 +38,7 @@ namespace I4GUI
 
         public void saveAgents(Agents agenter, string path) // Brugt i Undervisning ved JRT: Construction
         {
-            string mypath = @"" + path + ".xml";
+            string mypath = @"" + path;
 
             using (FileStream xmlStream = new FileStream(mypath, FileMode.OpenOrCreate))
             {

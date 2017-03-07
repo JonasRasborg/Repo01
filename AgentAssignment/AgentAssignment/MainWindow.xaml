@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AgentAssignment"
         mc:Ignorable="d"
-        Title="MainWindow" Height="485.059" Width="556.392">
+        Title="MainWindow" Height="485.059" Width="1218.084">
 
     <Window.Resources>
-        
+
         <SolidColorBrush x:Key="myBrush" Color="Aquamarine"/>
         <Image x:Key="bond1" Source="Resources/bond1.jpg"/>
         <Image x:Key="bond2" Source="Resources/bond2.jpg"/>
-        
+
         <Style x:Key="TextStyle">
             <Setter Property="Control.FontSize" Value="10pt"/>
             <Setter Property="Control.FontWeight" Value="Bold" />
@@ -28,9 +28,9 @@
 
     <Grid Background="{DynamicResource myBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="117*"/>
-            <ColumnDefinition Width="227*"/>
-            <ColumnDefinition Width="173*"/>
+            <ColumnDefinition Width="182*"/>
+            <ColumnDefinition Width="515*"/>
+            <ColumnDefinition Width="513*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="42*"/>
@@ -38,18 +38,30 @@
             <RowDefinition Height="37*"/>
             <RowDefinition Height="52*"/>
             <RowDefinition Height="50*"/>
-            <RowDefinition Height="273*"/>
+            <RowDefinition Height="273"/>
 
         </Grid.RowDefinitions>
-        <Label Style="{DynamicResource TextStyle}" x:Name="labelID" Content="ID" HorizontalAlignment="Left" Margin="46,12,0,0" VerticalAlignment="Top" Height="26" Grid.Row="1" Grid.RowSpan="2"/>
+        <Label Style="{DynamicResource TextStyle}" x:Name="labelID" Content="ID" HorizontalAlignment="Left" Margin="46,12,0,0" VerticalAlignment="Top" Height="26" Grid.Row="1" Grid.RowSpan="2" Width="22"/>
         <TextBox x:Name="textBoxID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="48,12,0,0" TextWrapping="Wrap" Text="{Binding Path=ID}" VerticalAlignment="Top" Width="63" Grid.Row="1"/>
-        <Label Style="{DynamicResource TextStyle}" x:Name="labelCodeName" Content="Code Name" HorizontalAlignment="Left" Margin="46,19,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Grid.ColumnSpan="2" Width="94"/>
+        <Label Style="{DynamicResource TextStyle}" x:Name="labelCodeName" Content="Code Name" HorizontalAlignment="Left" Margin="46,19,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="94"/>
         <TextBox x:Name="textBoxCodeName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="48,19,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Path=CodeName}" VerticalAlignment="Top" Width="143"/>
-        <Label Style="{DynamicResource TextStyle}" x:Name="labelSpeciality" Content="Speciality" HorizontalAlignment="Left" Margin="46,16,0,0" Grid.Row="3" VerticalAlignment="Top" Height="26"  Grid.ColumnSpan="2"/>
+        <Label Style="{DynamicResource TextStyle}" x:Name="labelSpeciality" Content="Speciality" HorizontalAlignment="Left" Margin="46,16,0,0" Grid.Row="3" VerticalAlignment="Top" Height="26" Width="63"/>
         <TextBox x:Name="textBoxSpeciality" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="48,16,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Path=Speciality}" VerticalAlignment="Top" Width="143"/>
-        <Label Style="{DynamicResource TextStyle}" x:Name="labelAssignment" Content="Assigment" HorizontalAlignment="Left" Margin="46,18,0,0" Grid.Row="4" VerticalAlignment="Top" Height="26" Grid.ColumnSpan="2"/>
+        <Label Style="{DynamicResource TextStyle}" x:Name="labelAssignment" Content="Assigment" HorizontalAlignment="Left" Margin="46,18,0,0" Grid.Row="4" VerticalAlignment="Top" Height="26" Width="68"/>
         <TextBox x:Name="textBoxAssigment" Grid.Column="1" HorizontalAlignment="Left" Height="118" Margin="48,18,0,0" Grid.Row="4" TextWrapping="Wrap" Text="{Binding Path=Assignment}" VerticalAlignment="Top" Width="143"/>
-        <ListBox x:Name="listBox" Grid.Column="1" HorizontalAlignment="Left" Height="332" Margin="218,0,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="180" DisplayMemberPath="CodeName" Grid.ColumnSpan="2" Grid.Row="2" ItemsSource="{Binding}" SelectedIndex="{Binding Path=CurrentIndex}" IsSynchronizedWithCurrentItem="True"/>
+        <ListBox x:Name="listBox" Grid.Column="1" HorizontalAlignment="Left" Height="332" Margin="240,0,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="180" DisplayMemberPath="CodeName" Grid.Row="2" ItemsSource="{Binding}" SelectedIndex="{Binding Path=CurrentIndex}" IsSynchronizedWithCurrentItem="True"/>
+        <ListView Grid.Column="2" Grid.Row="2" Grid.RowSpan="3" Margin="20,0,20,20"  ItemsSource="{Binding}" SelectedIndex="{Binding Path=CurrentIndex}" IsSynchronizedWithCurrentItem="True">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" Width="50"/>
+                        <GridViewColumn Header="CodeName" DisplayMemberBinding="{Binding Path=CodeName}" Width="100"/>
+                        <GridViewColumn Header="Speciality" DisplayMemberBinding="{Binding Path=Speciality}" Width="100"/>
+                        <GridViewColumn Header="Assignment" DisplayMemberBinding="{Binding Path=Assigment}" Width="150"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Menu Grid.ColumnSpan="3" Margin="0,0,0,10">
             <MenuItem Header="_File">
                 <MenuItem Header="_Open" Command="{Binding LoadCommand}"/>
@@ -69,12 +81,12 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <StatusBar HorizontalAlignment="Left" Height="26" Margin="0,247,0,0" Grid.Row="4" VerticalAlignment="Top" Width="548" Grid.ColumnSpan="3" DockPanel.Dock="Bottom">
+        <StatusBar HorizontalAlignment="Left" Height="26" Margin="0,247,0,0" Grid.Row="4" VerticalAlignment="Top" Width="548" Grid.ColumnSpan="2" DockPanel.Dock="Bottom">
             <StatusBarItem>
                 <TextBlock Name="StatusbarText" DataContext="aListe" Text="{Binding Path=Length}"/>
             </StatusBarItem>
         </StatusBar>
-        <ToolBar x:Name="toolBar" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Height="27" Width="538" Grid.RowSpan="2">
+        <ToolBar x:Name="toolBar" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="27" Width="538" Grid.RowSpan="2">
             <Button x:Name="prev" Content="&lt;" Height="27" VerticalAlignment="Top" Width="43" Margin="0,0,0,-5" Command="{Binding PreviusCommand}"/>
             <Button x:Name="next" Content="&gt;" Height="27" VerticalAlignment="Top" Width="38" Margin="0,0,0,-5" Command="{Binding NextCommand}"/>
             <Button x:Name="Hej" Content="{DynamicResource bond1}" Width="50"/>

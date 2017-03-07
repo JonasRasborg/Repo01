@@ -11,9 +11,6 @@ namespace I4GUI
         OpenSave openSave;
         public Agents()
         {
-            Add(new Agent("007", "Bond, James", "London", "Killing", "Kill Trump"));
-            Add(new Agent("006", "Berry, Halle", "London", "Spy", "Eat lunch"));
-
             openSave = new OpenSave();
         }
 
@@ -48,13 +45,16 @@ namespace I4GUI
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.ShowDialog();
 
-            this.ClearItems();
-
-            Agents agenter = openSave.readAgents(dlg.FileName);
-
-            foreach (var item in agenter)
+            if (dlg.FileName != "")
             {
-                Add(item);
+                this.ClearItems();
+
+                Agents agenter = openSave.readAgents(dlg.FileName);
+
+                foreach (var item in agenter)
+                {
+                    Add(item);
+                } 
             }
         }
 
