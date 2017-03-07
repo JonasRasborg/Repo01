@@ -62,6 +62,7 @@
     </Page>
     <Compile Include="06-Agent.cs" />
     <Compile Include="06-RelayCommand.cs" />
+    <Compile Include="AgentIDToColour.cs" />
     <Compile Include="Agents.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
