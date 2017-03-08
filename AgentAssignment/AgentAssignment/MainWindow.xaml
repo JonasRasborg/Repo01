@@ -51,10 +51,11 @@
         <Label Style="{DynamicResource TextStyle}" x:Name="labelAssignment" Content="Assigment" HorizontalAlignment="Left" Margin="46,18,0,0" Grid.Row="4" VerticalAlignment="Top" Height="26" Width="68"/>
         <TextBox x:Name="textBoxAssigment" Grid.Column="1" HorizontalAlignment="Left" Height="118" Margin="48,18,0,0" Grid.Row="4" TextWrapping="Wrap" Text="{Binding Path=Assignment}" VerticalAlignment="Top" Width="143"/>
         <ListBox x:Name="listBox" Grid.Column="1" HorizontalAlignment="Left" Height="332" Margin="240,0,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="180" DisplayMemberPath="CodeName" Grid.Row="2" ItemsSource="{Binding}" SelectedIndex="{Binding Path=CurrentIndex}" IsSynchronizedWithCurrentItem="True"/>
-        <ListView x:Name="ListView1" Grid.Column="2" Grid.Row="2" Grid.RowSpan="3" Margin="20,0,20,20"  ItemsSource="{Binding}" SelectedIndex="{Binding Path=CurrentIndex}" IsSynchronizedWithCurrentItem="True">
+        <ListView x:Name="ListView1" Grid.Column="2" Grid.Row="2" Grid.RowSpan="3" Margin="20,0,20,40"  ItemsSource="{Binding}" SelectedIndex="{Binding Path=CurrentIndex}" IsSynchronizedWithCurrentItem="True">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
+                        
                         <GridViewColumn Header="ID" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -62,9 +63,31 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                            <!--<GridViewColumn Header="CodeName" DisplayMemberBinding="{Binding Path=CodeName}" Width="100"/>
-                        <GridViewColumn Header="Speciality" DisplayMemberBinding="{Binding Path=Speciality}" Width="100"/>
-                        <GridViewColumn Header="Assignment" DisplayMemberBinding="{Binding Path=Assignment}" Width="150"/>-->
+
+                        <GridViewColumn Header="CodeName" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=CodeName}" Foreground="{Binding Path=ID, Converter={StaticResource IDToColour}}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Speciality" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Speciality}" Foreground="{Binding Path=ID, Converter={StaticResource IDToColour}}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Assignment" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Assignment}" Foreground="{Binding Path=ID, Converter={StaticResource IDToColour}}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
                     </GridView.Columns>
                 </GridView>
             </ListView.View>
@@ -100,11 +123,14 @@
             </ToolBar>
         </DockPanel>
 
-        <StatusBar Grid.Row="4" Grid.Column="0" VerticalAlignment="Bottom" Grid.ColumnSpan="3" Margin="0,0,0,0">
-            <StatusBarItem>
-                <TextBlock Name="StatusbarText" DataContext="aListe" Text="{Binding Path=Length}"/>
-            </StatusBarItem>
-        </StatusBar>
+        <DockPanel Grid.Row="4" Grid.ColumnSpan="3" Height="25" VerticalAlignment="Bottom">
+            <StatusBar DockPanel.Dock="Bottom">
+                <StatusBarItem>
+                    <TextBlock Name="StatusbarText" Text="Agenter"/>
+                </StatusBarItem>
+            </StatusBar>
+        </DockPanel>
+
     </Grid>
 </Window>
 

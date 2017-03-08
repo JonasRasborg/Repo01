@@ -9,9 +9,11 @@ namespace I4GUI
     public class Agents : ObservableCollection<Agent>, INotifyPropertyChanged
     {
         OpenSave openSave;
+        int _listCount;
         public Agents()
         {
             openSave = new OpenSave();
+            _listCount = this.Count;
         }
 
 
@@ -137,6 +139,21 @@ namespace I4GUI
                 if (currentIndex != value)
                 {
                     currentIndex = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+
+        public int ListCount
+        {
+            get { return _listCount; }
+
+            set
+            {
+                if (_listCount != value)
+                {
+                    _listCount = value;
                     NotifyPropertyChanged();
                 }
             }
