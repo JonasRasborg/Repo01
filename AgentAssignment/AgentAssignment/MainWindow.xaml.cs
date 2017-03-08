@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using I4GUI;
 using MvvmFoundation.Wpf;
+using System.ComponentModel;
 
 namespace AgentAssignment
 {
@@ -29,6 +30,9 @@ namespace AgentAssignment
             InitializeComponent();
 
             DataContext = aListe;
+
+            ICollectionView view = CollectionViewSource.GetDefaultView(ListView1.ItemsSource);
+
         }
 
         private void ExitClick(object sender, RoutedEventArgs e)
@@ -52,6 +56,41 @@ namespace AgentAssignment
         {
             Brush brush = new SolidColorBrush(Colors.Aquamarine);
             this.Resources["myBrush"] = brush;
+        }
+
+        private void AddClick(object sender, RoutedEventArgs e)
+        {
+            AddWindow addWindow = new AddWindow();
+
+            if (addWindow.ShowDialog() != null && addWindow.newAgent != null)
+            {
+                Agent newAgent = addWindow.newAgent;
+                aListe.Add(newAgent);
+            }
+
+
+        }
+
+        private void ComboSortChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem cbi = e.AddedItems[0] as ComboBoxItem;
+            string newSortOrder;
+            if (cbi != null)
+            {
+                if (cbi.Tag == null)
+                    newSortOrder = "None";
+                else
+                    newSortOrder = cbi.Tag.ToString();
+
+                SortDescription sortDesc = new SortDescription(newSortOrder, ListSortDirection.Ascending);
+                ICollectionView cv = CollectionViewSource.GetDefaultView(DataContext);
+                if (cv != null)
+                {
+                    cv.SortDescriptions.Clear();
+                    if (newSortOrder != "None")
+                        cv.SortDescriptions.Add(sortDesc);
+                }
+            }
         }
     }
 }

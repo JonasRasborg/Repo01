@@ -3,6 +3,10 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MvvmFoundation.Wpf;
+using System.Collections.Generic;
+using System.Windows.Data;
+using AgentAssignment;
+using System.Linq;
 
 namespace I4GUI
 {
@@ -157,6 +161,48 @@ namespace I4GUI
                     NotifyPropertyChanged();
                 }
             }
+        }
+
+        public IReadOnlyCollection<string> FilterSpecialities
+        {
+            get
+            {
+                ObservableCollection<string> result = new ObservableCollection<string>();
+                result.Add("All");
+                foreach (var s in new Specialities())
+                    result.Add(s);
+                return result;
+            }
+        }
+
+        int currentSpecialityIndex = 0;
+        string filter;
+
+        public int CurrentSpecialityIndex
+        {
+            get { return currentSpecialityIndex; }
+            set
+            {
+                if (currentSpecialityIndex != value)
+                {
+                    ICollectionView cv = CollectionViewSource.GetDefaultView(this);
+                    currentSpecialityIndex = value;
+                    if (currentSpecialityIndex == 0)
+                        cv.Filter = null; // Index 0 is no filter (show all)
+                    else
+                    {
+                        filter = FilterSpecialities.ElementAt(currentSpecialityIndex);
+                        cv.Filter = CollectionViewSource_Filter;
+                    }
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private bool CollectionViewSource_Filter(object ag)
+        {
+            Agent agent = ag as Agent;
+            return (agent.Speciality == filter);
         }
 
         #endregion

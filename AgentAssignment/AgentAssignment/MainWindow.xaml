@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AgentAssignment"
         xmlns:i4Gui="clr-namespace:I4GUI"
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d"
         Title="MainWindow" Height="485.059" Width="1218.084">
 
@@ -24,7 +25,6 @@
             <Setter Property="FontSize" Value="12pt" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
-
     </Window.Resources>
 
     <Grid Background="{DynamicResource myBrush}">
@@ -47,7 +47,15 @@
         <Label Style="{DynamicResource TextStyle}" x:Name="labelCodeName" Content="Code Name" HorizontalAlignment="Left" Margin="46,19,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="94"/>
         <TextBox x:Name="textBoxCodeName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="48,19,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Path=CodeName}" VerticalAlignment="Top" Width="143"/>
         <Label Style="{DynamicResource TextStyle}" x:Name="labelSpeciality" Content="Speciality" HorizontalAlignment="Left" Margin="46,16,0,0" Grid.Row="3" VerticalAlignment="Top" Height="26" Width="63"/>
-        <TextBox x:Name="textBoxSpeciality" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="48,16,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Path=Speciality}" VerticalAlignment="Top" Width="143"/>
+
+        <ComboBox x:Name="comboBoxSpeciality" HorizontalAlignment="Left" Margin="48,16,0,0" Grid.Row="3" VerticalAlignment="Top" Width="143" Grid.Column="1">
+            <ComboBoxItem IsSelected="True" Tag="Assassination">Assassination</ComboBoxItem>
+            <ComboBoxItem Tag="Bombs">Bombs</ComboBoxItem>
+            <ComboBoxItem Tag="Martinis">Martinis</ComboBoxItem>
+            <ComboBoxItem Tag="Low profile">Low profile</ComboBoxItem>
+            <ComboBoxItem Tag="Spy">Spy</ComboBoxItem>
+        </ComboBox>
+
         <Label Style="{DynamicResource TextStyle}" x:Name="labelAssignment" Content="Assigment" HorizontalAlignment="Left" Margin="46,18,0,0" Grid.Row="4" VerticalAlignment="Top" Height="26" Width="68"/>
         <TextBox x:Name="textBoxAssigment" Grid.Column="1" HorizontalAlignment="Left" Height="118" Margin="48,18,0,0" Grid.Row="4" TextWrapping="Wrap" Text="{Binding Path=Assignment}" VerticalAlignment="Top" Width="143"/>
         <ListBox x:Name="listBox" Grid.Column="1" HorizontalAlignment="Left" Height="332" Margin="240,0,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="180" DisplayMemberPath="CodeName" Grid.Row="2" ItemsSource="{Binding}" SelectedIndex="{Binding Path=CurrentIndex}" IsSynchronizedWithCurrentItem="True"/>
@@ -55,7 +63,7 @@
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        
+
                         <GridViewColumn Header="ID" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -130,6 +138,17 @@
                 </StatusBarItem>
             </StatusBar>
         </DockPanel>
+
+        <Button x:Name="button" Content="ADD" HorizontalAlignment="Left" Margin="46,153,0,0" Grid.Row="4" VerticalAlignment="Top" Width="75" Click="AddClick"/>
+
+        <ComboBox x:Name="comboBox" Grid.Column="2" HorizontalAlignment="Left" Margin="20,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionChanged="ComboSortChanged">
+            <ComboBoxItem IsSelected="True" Tag="None">None</ComboBoxItem>
+            <ComboBoxItem Tag="ID">ID</ComboBoxItem>
+            <ComboBoxItem Tag="CodeName">CodeName</ComboBoxItem>
+            <ComboBoxItem Tag="Speciality">Speciality</ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox x:Name="comboBoxFilter" Grid.Column="2" HorizontalAlignment="Left" Margin="223,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Path=FilterSpecialities, Mode=OneWay}" SelectedIndex="{Binding Path=CurrentSpecialityIndex}"/>
 
     </Grid>
 </Window>
